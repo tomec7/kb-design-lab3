@@ -9,55 +9,17 @@
     <title>Krásny Exteriér - 3D Garden Visualizations</title>    
     <script>
       (function(){
-        var BASE = '/kb-design-lab3';
-
-        // normalize /index.html -> /
-        if (location.pathname === BASE) {
-          location.replace(BASE + '/about' + location.search + location.hash);
-          return;
+        // custom domain root mode: keep clean root URLs
+        if (location.pathname === '/index.html') {
+          location.replace('/' + location.search + location.hash);
         }
-
-        if (location.pathname === BASE + '/' || location.pathname === BASE + '/index.html') {
-          location.replace(BASE + '/about' + location.search + location.hash);
-          return;
-        }
-
-        // keep SPA navigation inside LAB2 path
-        var originalPush = history.pushState.bind(history);
-        var originalReplace = history.replaceState.bind(history);
-
-        function mapUrl(url){
-          if (typeof url !== 'string') return url;
-          if (url === '/') return BASE + '/';
-          if (url.startsWith('/#')) return BASE + url.slice(1);
-          if (url.startsWith('/?')) return BASE + url;
-          if (url.startsWith('/') && !url.startsWith(BASE + '/')) return BASE + url;
-          return url;
-        }
-
-        history.pushState = function(state, title, url){
-          return originalPush(state, title, mapUrl(url));
-        };
-        history.replaceState = function(state, title, url){
-          return originalReplace(state, title, mapUrl(url));
-        };
-
-        document.addEventListener('click', function(e){
-          var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-          if (!a) return;
-          var href = a.getAttribute('href');
-          if (!href) return;
-          if (href.startsWith('/')) {
-            a.setAttribute('href', mapUrl(href));
-          }
-        }, true);
       })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/kb-design-lab3/assets/index-BjskkBJk.js"></script>
-    <link rel="stylesheet" crossorigin href="/kb-design-lab3/assets/index-DlA7iNbP.css">
+    <script type="module" crossorigin src="/assets/index-BjskkBJk.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DlA7iNbP.css">
     <!-- lab2-build:2026-04-06T09:38:26.455890Z -->
 </head>
 
